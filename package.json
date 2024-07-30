@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/adapter/http/server.ts",
+    "dev": "tsx watch src/infrastructure/http/server.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.0.4",
     "tsx": "^4.16.2",
     "typescript": "^5.5.4",
     "vitest": "^2.0.4"
