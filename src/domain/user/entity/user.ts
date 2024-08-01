@@ -16,4 +16,32 @@ export class User extends EntityWithId<UserProps> {
   static create(props: UserProps, id?: UniqueEntityID): User {
     return new User(props, id)
   }
+
+  get name() {
+    return this.props.name
+  }
+
+  set name(name: string) {
+    this.props.name = name
+  }
+
+  get email() {
+    return this.props.email
+  }
+
+  get phone() {
+    return this.props.phone
+  }
+
+  set phone(phone: Phone) {
+    this.props.phone = phone
+  }
+
+  get address() {
+    return this.props.address
+  }
+
+  set address(address: Address) {
+    this.props.address = address
+  }
 }
