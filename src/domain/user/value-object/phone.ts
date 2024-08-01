@@ -17,7 +17,7 @@ export class Phone extends ValueObject<PhoneProps> {
   static createFromString(phone: string): Phone {
     const [prefix, number] = phone.split(' ')
 
-    if (!prefix && !number) throw new Error('Invalid phone string')
+    if (!prefix || !number) throw new Error('Invalid phone string')
 
     return new Phone({
       prefix: Number(prefix.replace(/\D/g, '')),
