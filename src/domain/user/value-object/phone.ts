@@ -14,6 +14,10 @@ export class Phone extends ValueObject<PhoneProps> {
     return this.props.number
   }
 
+  toString(): string {
+    return `(${this.prefix}) ${this.number}`
+  }
+
   static createFromString(phone: string): Phone {
     const [prefix, number] = phone.split(' ')
 
