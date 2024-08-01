@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest'
-import { CreateUserUseCase } from './create-user-use-case'
+import { RegisterUserUseCase } from './register-user-use-case'
 import { User } from '@/domain/user/entity/user'
 import { InMemoryUserRepository } from '../../../../../test/repository/in-memory-user-repository'
 
@@ -9,8 +9,8 @@ beforeEach(() => {
   inMemoryUserRepository = new InMemoryUserRepository()
 })
 
-test('it should be able to create a new user', async () => {
-  const user = await new CreateUserUseCase(inMemoryUserRepository).execute({
+test('it should be able to register a new user', async () => {
+  const user = await new RegisterUserUseCase(inMemoryUserRepository).execute({
     name: 'Adrian Gusberti',
     email: 'adrian01020304gusberti@gmail.com',
     password: '123456',
@@ -29,8 +29,8 @@ test('it should be able to create a new user', async () => {
   expect(user).toBeInstanceOf(User)
 })
 
-test('it should not be able to create a new user with an existent email', async () => {
-  await new CreateUserUseCase(inMemoryUserRepository).execute({
+test('it should not be able to register a new user with an existent email', async () => {
+  await new RegisterUserUseCase(inMemoryUserRepository).execute({
     name: 'Adrian Gusberti',
     email: 'adrian01020304gusberti@gmail.com',
     password: '123456',
@@ -46,7 +46,7 @@ test('it should not be able to create a new user with an existent email', async 
   })
 
   await expect(
-    new CreateUserUseCase(inMemoryUserRepository).execute({
+    new RegisterUserUseCase(inMemoryUserRepository).execute({
       name: 'Adrian Gusberti',
       email: 'adrian01020304gusberti@gmail.com',
       password: '123456',

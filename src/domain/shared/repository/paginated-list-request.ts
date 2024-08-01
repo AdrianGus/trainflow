@@ -1,4 +1,4 @@
-export abstract class PaginatedListRequest {
+export class PaginatedListRequest {
   private page: number
   private size: number
 

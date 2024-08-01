@@ -29,6 +29,10 @@ export class User extends EntityWithId<UserProps> {
     return this.props.email
   }
 
+  get password() {
+    return this.props.password
+  }
+
   get phone() {
     return this.props.phone
   }
