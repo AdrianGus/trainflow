@@ -2,7 +2,7 @@ import { beforeEach, expect, test } from 'vitest'
 import { InMemoryUserRepository } from '../../../../../test/repository/in-memory-user-repository'
 import { makeUser } from '../../../../../test/factory/make-user'
 import { LoginUserUseCase } from './login-user-use-case'
-import bcrypt from 'bcrypt'
+var bcrypt = require('bcryptjs')
 
 let inMemoryUserRepository: InMemoryUserRepository
 

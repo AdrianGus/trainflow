@@ -1,10 +1,11 @@
 import { UserRepositoryInterface } from '@/domain/user/repository/user-repository-interface'
-import { InMemoryUserRepository } from '../../../test/repository/in-memory-user-repository'
+import { UserMysqlRepository } from '../database/typeorm/repository/user-mysql-repository'
+import { Database } from '../database/typeorm/database'
 
 export class RepositoryFactory {
   constructor() {}
 
   buildUser(): UserRepositoryInterface {
-    return new InMemoryUserRepository()
+    return new UserMysqlRepository(Database.getConnection())
   }
 }

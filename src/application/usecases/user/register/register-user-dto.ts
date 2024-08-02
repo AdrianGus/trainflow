@@ -1,7 +1,12 @@
-export type RegisterUserInputDto = {
+import * as z from 'zod'
+import { registerUserSchema } from './register-use-schema'
+
+export type RegisterUserInputDto = z.infer<typeof registerUserSchema>
+
+export type RegisterUserOutputDto = {
+  id: string
   name: string
   email: string
-  password: string
   phone: string
   address: {
     zipCode: string
@@ -12,4 +17,5 @@ export type RegisterUserInputDto = {
     state: string
     complement?: string
   }
+  jwt: string
 }

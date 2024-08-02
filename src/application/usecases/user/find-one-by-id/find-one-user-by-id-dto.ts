@@ -1,9 +1,4 @@
-import z from 'zod'
-import { loginUserSchema } from './login-user-schema'
-
-export type LoginUserInputDto = z.infer<typeof loginUserSchema>
-
-export type LoginUserOutputDto = {
+export type FindOneUserByIdOutputDto = {
   id: string
   name: string
   email: string
@@ -17,5 +12,4 @@ export type LoginUserOutputDto = {
     state: string
     complement?: string
   }
-  jwt: string
 }
