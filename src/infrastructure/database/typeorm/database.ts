@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm'
-import { UserEntity } from './entity/user-entity'
+import { AthleteEntity } from './entity/athlete-entity'
 
 export class Database {
   private static connection: DataSource
@@ -12,7 +12,7 @@ export class Database {
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [UserEntity],
+      entities: [AthleteEntity],
       synchronize: true,
       logging: true
     })

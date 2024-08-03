@@ -1,11 +1,11 @@
-import { UserRepositoryInterface } from '@/domain/user/repository/user-repository-interface'
-import { UserMysqlRepository } from '../database/typeorm/repository/user-mysql-repository'
+import { AthleteRepositoryInterface } from '@/domain/athlete/repository/athlete-repository-interface'
+import { AthleteMysqlRepository } from '../database/typeorm/repository/athlete-mysql-repository'
 import { Database } from '../database/typeorm/database'
 
 export class RepositoryFactory {
   constructor() {}
 
-  buildUser(): UserRepositoryInterface {
-    return new UserMysqlRepository(Database.getConnection())
+  buildAthlete(): AthleteRepositoryInterface {
+    return new AthleteMysqlRepository(Database.getConnection())
   }
 }

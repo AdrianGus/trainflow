@@ -1,9 +1,9 @@
-import { User } from '@/domain/user/entity/user'
+import { Athlete } from '@/domain/athlete/entity/athlete'
 
 declare global {
   namespace Express {
     export interface Request {
-      user: {
+      athlete: {
         id: string
       }
     }

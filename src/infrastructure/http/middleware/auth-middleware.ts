@@ -20,17 +20,17 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
       algorithms: ['HS256']
     }) as JwtPayload
 
-    const user = await new Factory()
+    const athlete = await new Factory()
       .buildUseCaseFactory()
-      .buildUser()
+      .buildAthlete()
       .buildFindOneById()
       .execute(id)
 
-    if (!user) {
+    if (!athlete) {
       return res.status(401).send({ message: 'Unauthorized' })
     }
 
-    req.user = {
+    req.athlete = {
       id
     }
 
