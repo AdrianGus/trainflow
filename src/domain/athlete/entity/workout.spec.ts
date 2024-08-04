@@ -5,9 +5,11 @@ import { Circuit } from './circuit'
 import { CircuitExerciseList } from './circuit-exercise-list'
 import { Exercise } from './exercise'
 import { WorkoutCircuitList } from './workouse-circuit-list'
+import { randomUUID } from 'crypto'
 
 test('it should be able to create a new workouse without an id', () => {
   const workout = Workout.create({
+    athleteId: new UniqueEntityID(randomUUID()),
     title: 'Muay Thai',
     description: 'Treino de muay thai intermediário'
   })
@@ -18,6 +20,7 @@ test('it should be able to create a new workouse without an id', () => {
 test('it should be able to create a new workouse with id', () => {
   const workout = Workout.create(
     {
+      athleteId: new UniqueEntityID(randomUUID()),
       title: 'Muay Thai',
       description: 'Treino de muay thai intermediário'
     },
@@ -30,6 +33,7 @@ test('it should be able to create a new workouse with id', () => {
 
 test('it should be able to add a new circuit', () => {
   const workout = Workout.create({
+    athleteId: new UniqueEntityID(randomUUID()),
     title: 'Muay Thai',
     description: 'Treino de muay thai intermediário',
     circuits: new WorkoutCircuitList([
@@ -54,6 +58,7 @@ test('it should be able to add a new circuit', () => {
 
 test('it should be able to remove all circuits', () => {
   const workout = Workout.create({
+    athleteId: new UniqueEntityID(randomUUID()),
     title: 'Muay Thai',
     description: 'Treino de muay thai intermediário',
     circuits: new WorkoutCircuitList([
@@ -83,6 +88,7 @@ test('it should be able to remove a specific circuit', () => {
   })
 
   const workout = Workout.create({
+    athleteId: new UniqueEntityID(randomUUID()),
     title: 'Muay Thai',
     description: 'Treino de muay thai intermediário',
     circuits: new WorkoutCircuitList([circuit])

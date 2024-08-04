@@ -5,6 +5,7 @@ import { WorkoutStatusEnum } from '../enum/workout-status-enum'
 import { WorkoutCircuitList } from './workouse-circuit-list'
 
 type WorkoutProps = {
+  athleteId: UniqueEntityID
   title: string
   description: string
   circuits: WorkoutCircuitList
@@ -24,6 +25,10 @@ export class Workout extends EntityWithId<WorkoutProps> {
       },
       id
     )
+  }
+
+  get athleteId() {
+    return this.props.athleteId
   }
 
   get title() {
