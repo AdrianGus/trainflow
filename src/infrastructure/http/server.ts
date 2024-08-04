@@ -1,6 +1,8 @@
+import 'reflect-metadata'
 import express from 'express'
 import cors from 'cors'
 import { router } from './router'
+import { Database } from '../database/typeorm/database'
 
 const server = express()
 
@@ -9,7 +11,7 @@ server.use(express.urlencoded({ extended: false }))
 server.use(cors())
 
 server.use(router)
-server.set('port', 3000)
+server.set('port', 3001)
 
 server.listen(server.get('port'), async () => {
   console.info(
@@ -17,6 +19,8 @@ server.listen(server.get('port'), async () => {
     server.get('port'),
     server.get('env')
   )
+
+  await new Database().createConnection()
 
   try {
   } catch (error) {

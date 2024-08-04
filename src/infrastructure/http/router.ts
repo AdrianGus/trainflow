@@ -1,17 +1,17 @@
 import { Router } from 'express'
-import { UserHandler } from './handler/user-handler'
+import { AthleteHandler } from './handler/athlete-handler'
 import { authMiddleware } from './middleware/auth-middleware'
 
 const router = Router()
 
-const userHandler = new UserHandler()
+const athleteHandler = new AthleteHandler()
 
-router.route('/user/register').post(userHandler.register.bind(userHandler))
+router.route('/athlete/register').post(athleteHandler.register.bind(athleteHandler))
 
-router.route('/user/login').post(userHandler.login.bind(userHandler))
+router.route('/athlete/login').post(athleteHandler.login.bind(athleteHandler))
 
 router.use(authMiddleware)
 
-router.route('/user').get(userHandler.get.bind(userHandler))
+router.route('/athlete').get(athleteHandler.get.bind(athleteHandler))
 
 export { router }
