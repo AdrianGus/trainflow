@@ -2,9 +2,9 @@ import { EntityWithId } from '@/domain/shared/entity-with-id'
 import { UniqueEntityID } from '@/domain/shared/unique-entity-id'
 import { Optional } from '@/domain/shared/type/optional'
 import { WorkoutStatusEnum } from '../enum/workout-status-enum'
-import { WorkoutCircuitList } from './workouse-circuit-list'
+import { WorkoutCircuitList } from './workout-circuit-list'
 
-type WorkoutProps = {
+export type WorkoutProps = {
   athleteId: UniqueEntityID
   title: string
   description: string
@@ -35,8 +35,16 @@ export class Workout extends EntityWithId<WorkoutProps> {
     return this.props.title
   }
 
+  set title(title: string) {
+    this.props.title = title
+  }
+
   get description() {
     return this.props.description
+  }
+
+  set description(description: string) {
+    this.props.description = description
   }
 
   get circuits() {
@@ -51,5 +59,9 @@ export class Workout extends EntityWithId<WorkoutProps> {
 
   get status() {
     return this.props.status
+  }
+
+  set status(status: WorkoutStatusEnum) {
+    this.props.status = status
   }
 }

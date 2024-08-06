@@ -4,10 +4,10 @@ import { UniqueEntityID } from '@/domain/shared/unique-entity-id'
 import { Circuit } from './circuit'
 import { CircuitExerciseList } from './circuit-exercise-list'
 import { Exercise } from './exercise'
-import { WorkoutCircuitList } from './workouse-circuit-list'
+import { WorkoutCircuitList } from './workout-circuit-list'
 import { randomUUID } from 'crypto'
 
-test('it should be able to create a new workouse without an id', () => {
+test('it should be able to create a new workout without an id', () => {
   const workout = Workout.create({
     athleteId: new UniqueEntityID(randomUUID()),
     title: 'Muay Thai',
@@ -17,7 +17,7 @@ test('it should be able to create a new workouse without an id', () => {
   expect(workout).toBeInstanceOf(Workout)
 })
 
-test('it should be able to create a new workouse with id', () => {
+test('it should be able to create a new workout with id', () => {
   const workout = Workout.create(
     {
       athleteId: new UniqueEntityID(randomUUID()),

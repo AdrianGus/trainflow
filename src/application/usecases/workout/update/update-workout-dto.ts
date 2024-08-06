@@ -1,11 +1,11 @@
-import { CircuitStatusEnum } from '@/domain/athlete/enum/circuit-status-enum'
-import { WorkoutStatusEnum } from '@/domain/athlete/enum/workout-status-enum'
+import { CircuitStatusEnum } from '@/domain/workout/enum/circuit-status-enum'
+import { WorkoutStatusEnum } from '@/domain/workout/enum/workout-status-enum'
 
-export type CreateAthleteWorkoutInputDto = {
-  athleteId: string
-  title: string
-  description: string
-  circuits: Array<{
+export type UpdateWorkoutInputDto = {
+  id: string
+  title?: string
+  description?: string
+  circuits?: Array<{
     title: string
     description: string
     exercises: Array<{
@@ -14,10 +14,11 @@ export type CreateAthleteWorkoutInputDto = {
     }>
     status: CircuitStatusEnum
   }>
-  status: WorkoutStatusEnum
+  status?: WorkoutStatusEnum
 }
 
-export type CreateAthleteWorkoutOutputDto = {
+export type UpdateWorkoutOutputDto = {
+  id: string
   athleteId: string
   title: string
   description: string

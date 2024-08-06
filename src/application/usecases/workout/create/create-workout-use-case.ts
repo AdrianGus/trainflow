@@ -1,23 +1,24 @@
 import { UseCaseInterface } from '@/application/interface/use-case-interface'
-import { AthleteRepositoryInterface } from '@/domain/athlete/repository/athlete-repository-interface'
 import { NotFoundError } from '@/infrastructure/http/util/api-errors'
-import { Workout } from '@/domain/athlete/entity/workout'
-import { WorkoutCircuitList } from '@/domain/athlete/entity/workouse-circuit-list'
-import { Circuit } from '@/domain/athlete/entity/circuit'
-import { CircuitExerciseList } from '@/domain/athlete/entity/circuit-exercise-list'
-import { Exercise } from '@/domain/athlete/entity/exercise'
+import { CreateWorkoutInputDto, CreateWorkoutOutputDto } from './create-workout-dto'
+import { WorkoutRepositoryInterface } from '@/domain/workout/repository/workout-repository-interface'
+import { Workout } from '@/domain/workout/entity/workout'
 import { UniqueEntityID } from '@/domain/shared/unique-entity-id'
-import {
-  CreateAthleteWorkoutInputDto,
-  CreateAthleteWorkoutOutputDto
-} from './create-athlete-workout-dto'
+import { WorkoutCircuitList } from '@/domain/workout/entity/workout-circuit-list'
+import { Circuit } from '@/domain/workout/entity/circuit'
+import { CircuitExerciseList } from '@/domain/workout/entity/circuit-exercise-list'
+import { Exercise } from '@/domain/workout/entity/exercise'
+import { AthleteRepositoryInterface } from '@/domain/athlete/repository/athlete-repository-interface'
 
-export class AddAthleteWorkoutUseCase
-  implements UseCaseInterface<CreateAthleteWorkoutInputDto, CreateAthleteWorkoutOutputDto>
+export class CreateWorkoutUseCase
+  implements UseCaseInterface<CreateWorkoutInputDto, CreateWorkoutOutputDto>
 {
-  constructor(private readonly athleteRepository: AthleteRepositoryInterface) {}
+  constructor(
+    private readonly athleteRepository: AthleteRepositoryInterface,
+    private readonly workoutRepository: WorkoutRepositoryInterface
+  ) {}
 
-  async execute(input: CreateAthleteWorkoutInputDto): Promise<CreateAthleteWorkoutOutputDto> {
+  async execute(input: CreateWorkoutInputDto): Promise<CreateWorkoutOutputDto> {
     const athlete = await this.athleteRepository.findOneById(input.athleteId)
 
     if (!athlete) throw new NotFoundError('Athlete not found')
@@ -46,12 +47,10 @@ export class AddAthleteWorkoutUseCase
       status: input.status
     })
 
-    athlete.workouts.add(workout)
-
-    await this.athleteRepository.update(athlete)
+    await this.workoutRepository.create(workout)
 
     return {
-      athleteId: athlete.id.toString(),
+      athleteId: workout.athleteId.toString(),
       title: workout.title,
       description: workout.description,
       circuits: workout.circuits.getItems().map(circuit => ({
